@@ -67,6 +67,63 @@ sail artisan migrate
 
 ```
 
+## ⚙️ Frontend Setup
+
+This project uses [Vite](https://vitejs.dev/) to build frontend assets (JS/CSS), integrated with Laravel.
+
+Laravel reads the compiled assets from `public/build/manifest.json`. This file is generated when running either `npm run dev` or `npm run build`.
+
+### ✅ Required Node.js version
+
+You must use **Node.js 18.x (LTS)**. Other versions (like 21 or 23) may not be compatible with dependencies like Rollup.
+
+We recommend using [`nvm`](https://github.com/nvm-sh/nvm) to manage your Node version:
+
+```bash
+nvm install 18
+nvm use 18
+
+```
+
+### 🔨 Build or Dev Mode
+You have two options:
+
+🧪 Development mode (auto-reload):
+
+```bash
+npm install
+npm run dev
+
+```
+
+Or with Sail:
+
+```bash
+sail npm install
+sail npm run dev
+
+```
+
+This will start Vite in development mode with hot module reload.
+
+✅ Production / One-time build:
+If you prefer to run only Laravel (without a separate Vite process), generate the static assets once:
+
+```bash
+npm run build
+# or
+sail npm run build
+
+```
+
+This will create the public/build/manifest.json file required by Laravel to load JS and CSS.
+
+After that, Laravel will serve the compiled assets directly — no need to run Vite continuously.
+
+
+
+
+
 ### 🛰️ Running Services (via Docker/Sail)
 
 The following services are started automatically by Laravel Sail and are accessible locally:
